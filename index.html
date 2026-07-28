@@ -311,10 +311,10 @@
 
 <section class="band">
   <div class="container band-grid">
-    <div><b>200+</b><span>Gestores en la red</span></div>
-    <div><b>23+</b><span>Provincias con presencia</span></div>
-    <div><b>5</b><span>Entidades financieras aliadas</span></div>
-    <div><b>100%</b><span>Gestión centralizada</span></div>
+    <div><b data-count="200" data-suffix="+">200+</b><span>Gestores en la red</span></div>
+    <div><b data-count="23" data-suffix="+">23+</b><span>Provincias con presencia</span></div>
+    <div><b data-count="5">5</b><span>Entidades financieras aliadas</span></div>
+    <div><b data-count="100" data-suffix="%">100%</b><span>Gestión centralizada</span></div>
   </div>
 </section>
 
@@ -444,6 +444,35 @@
 
     window.open(`https://wa.me/5493516659121?text=${encodeURIComponent(decodeURIComponent(texto))}`, '_blank');
   });
+
+  // Contador animado (0 -> número) al aparecer en pantalla
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nums = document.querySelectorAll('[data-count]');
+    function countUp(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if(reduce){ el.textContent = target + suffix; return; }
+      var dur = 1300, t0 = performance.now();
+      function tick(now){
+        var p = Math.min((now - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if(p < 1){ requestAnimationFrame(tick); }
+      }
+      requestAnimationFrame(tick);
+    }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ countUp(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      nums.forEach(function(el){ io.observe(el); });
+    } else {
+      nums.forEach(countUp);
+    }
+  })();
 </script>
 
 </body>
