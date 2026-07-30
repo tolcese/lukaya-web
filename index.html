@@ -112,9 +112,11 @@
   .a-card p{color:var(--gray-600);font-size:.96rem;line-height:1.55;margin:2px 0 4px;}
   .a-card-media{width:100%;height:170px;border-radius:10px;overflow:hidden;background:var(--gray-100);margin-bottom:4px;}
   .a-card-media svg{width:100%;height:100%;display:block;}
-  .a-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+  .a-card-top{display:flex;align-items:center;gap:16px;}
+  .a-card-top h3{margin:0;}
   .a-card-icon{width:56px;height:56px;border-radius:14px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .a-card-icon svg{width:36px;height:36px;display:block;}
+  .a-card .tag-center{align-self:center;margin:2px auto 0;}
   .a-card ul.check-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin:8px 0 6px;}
   .a-card ul.check-list li{padding-left:24px;position:relative;color:var(--gray-900);font-size:.95rem;}
   .a-card ul.check-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--orange);font-weight:700;}
@@ -266,6 +268,7 @@
     <p class="lead">Si tenés una agencia o concesionaria, tenemos un camino armado para que empieces a comercializar créditos prendarios hoy mismo.</p>
     <div class="audience-grid">
       <div class="a-card" id="gestores">
+        <span class="tag tag-center">Agencias</span>
         <div class="a-card-top">
           <div class="a-card-icon">
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -281,9 +284,8 @@
               <path d="M38 29 V39 M33 34 H43" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="tag">Agencias</span>
+          <h3>Sumá tu agencia y accedé a más oportunidades de crédito</h3>
         </div>
-        <h3>Sumá tu agencia y accedé a más oportunidades de crédito</h3>
         <ul class="check-list">
           <li>Acceso a múltiples entidades financieras</li>
           <li>Simulaciones ágiles y 100% online</li>
