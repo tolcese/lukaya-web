@@ -88,12 +88,12 @@
     width:420px;height:420px;border-radius:50%;
     background:radial-gradient(circle, rgba(244,106,45,.35), transparent 70%);
   }
-  .hero-inner{position:relative;z-index:1;max-width:720px;}
-  .hero h1{font-size:2.9rem;line-height:1.12;margin-bottom:20px;}
+  .hero-inner{position:relative;z-index:1;max-width:1040px;}
+  .hero h1{font-size:2.9rem;line-height:1.12;margin-bottom:20px;max-width:720px;}
   .hero h1 span{color:var(--orange);}
-  .hero p.lead{color:rgba(255,255,255,.75);margin-bottom:34px;}
+  .hero p.lead{color:rgba(255,255,255,.75);margin-bottom:34px;max-width:720px;}
   .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:52px;}
-  .hero-stats{display:flex;flex-wrap:wrap;gap:40px;border-top:1px solid rgba(255,255,255,.15);padding-top:32px;}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:28px;border-top:1px solid rgba(255,255,255,.15);padding-top:32px;}
   .hero-stat b{display:block;font-size:1.8rem;color:var(--orange);}
   .hero-stat span{font-size:.85rem;color:rgba(255,255,255,.65);}
 
@@ -235,16 +235,16 @@
   <div class="container hero-inner">
     <span class="eyebrow">Créditos prendarios · Red nacional de gestores</span>
     <h1>Gestionamos tus <span>créditos</span> del automotor, en todo el país.</h1>
-    <p class="lead">Luka ya conecta a clientes, concesionarias y gestores con las mejores opciones de financiación prendaria. Rapidez, respaldo y una red de más de 200 gestores en 23 provincias.</p>
+    <p class="lead">Luka ya conecta a clientes, concesionarias y gestores con las mejores opciones de financiación prendaria. Rapidez, respaldo y una red de más de 150 gestores en 23 provincias.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#creditos">Quiero mi crédito</a>
       <a class="btn btn-outline-light" href="#gestores">Sumar mi agencia como gestor</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><b>150+</b><span>Gestores en la red</span></div>
-      <div class="hero-stat"><b>23+</b><span>Provincias con presencia</span></div>
-      <div class="hero-stat"><b>5</b><span>Entidades financieras aliadas</span></div>
-      <div class="hero-stat"><b>100%</b><span>Gestión centralizada</span></div>
+      <div class="hero-stat"><b data-count="150" data-suffix="+">150+</b><span>Gestores en la red</span></div>
+      <div class="hero-stat"><b data-count="23" data-suffix="+">23+</b><span>Provincias con presencia</span></div>
+      <div class="hero-stat"><b data-count="5">5</b><span>Entidades financieras aliadas</span></div>
+      <div class="hero-stat"><b data-count="100" data-suffix="%">100%</b><span>Gestión centralizada</span></div>
       <div class="hero-stat"><b>Ushuaia–Jujuy</b><span>Alcance de punta a punta</span></div>
     </div>
   </div>
@@ -308,15 +308,6 @@
         <p>Coordinamos los últimos pasos hasta la acreditación del crédito.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="container band-grid">
-    <div><b data-count="200" data-suffix="+">200+</b><span>Gestores en la red</span></div>
-    <div><b data-count="23" data-suffix="+">23+</b><span>Provincias con presencia</span></div>
-    <div><b data-count="5">5</b><span>Entidades financieras aliadas</span></div>
-    <div><b data-count="100" data-suffix="%">100%</b><span>Gestión centralizada</span></div>
   </div>
 </section>
 
@@ -447,27 +438,34 @@
     window.open(`https://wa.me/5493516659121?text=${encodeURIComponent(decodeURIComponent(texto))}`, '_blank');
   });
 
-  // Contador animado (0 -> número) al aparecer en pantalla
+  // Contador animado (0 -> número) cada vez que aparece en pantalla
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var nums = document.querySelectorAll('[data-count]');
     function countUp(el){
       var target = parseInt(el.getAttribute('data-count'), 10);
       var suffix = el.getAttribute('data-suffix') || '';
+      if(el._raf){ cancelAnimationFrame(el._raf); el._raf = null; }
       if(reduce){ el.textContent = target + suffix; return; }
       var dur = 1300, t0 = performance.now();
       function tick(now){
         var p = Math.min((now - t0) / dur, 1);
         var eased = 1 - Math.pow(1 - p, 3);
         el.textContent = Math.round(target * eased) + suffix;
-        if(p < 1){ requestAnimationFrame(tick); }
+        if(p < 1){ el._raf = requestAnimationFrame(tick); }
+        else { el._raf = null; }
       }
-      requestAnimationFrame(tick);
+      el._raf = requestAnimationFrame(tick);
+    }
+    function reset(el){
+      if(el._raf){ cancelAnimationFrame(el._raf); el._raf = null; }
+      el.textContent = '0' + (el.getAttribute('data-suffix') || '');
     }
     if('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
-          if(e.isIntersecting){ countUp(e.target); io.unobserve(e.target); }
+          if(e.isIntersecting){ countUp(e.target); }
+          else { reset(e.target); }
         });
       }, { threshold: 0.5 });
       nums.forEach(function(el){ io.observe(el); });
