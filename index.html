@@ -112,6 +112,14 @@
   .a-card p{color:var(--gray-600);font-size:.96rem;line-height:1.55;margin:2px 0 4px;}
   .a-card-media{width:100%;height:170px;border-radius:10px;overflow:hidden;background:var(--gray-100);margin-bottom:4px;}
   .a-card-media svg{width:100%;height:100%;display:block;}
+  .a-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+  .a-card-icon{width:56px;height:56px;border-radius:14px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .a-card-icon svg{width:36px;height:36px;display:block;}
+  .a-card ul.check-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin:8px 0 6px;}
+  .a-card ul.check-list li{padding-left:24px;position:relative;color:var(--gray-900);font-size:.95rem;}
+  .a-card ul.check-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--orange);font-weight:700;}
+  .a-card-note{display:flex;align-items:center;gap:8px;color:var(--gray-600);font-size:.85rem;margin-top:2px;}
+  .a-card-note svg{width:17px;height:17px;flex-shrink:0;color:var(--orange);}
 
   /* How it works */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;}
@@ -258,26 +266,36 @@
     <p class="lead">Si tenés una agencia o concesionaria, tenemos un camino armado para que empieces a comercializar créditos prendarios hoy mismo.</p>
     <div class="audience-grid">
       <div class="a-card" id="gestores">
-        <div class="a-card-media">
-          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="200" fill="#F7F7F5"/>
-            <line x1="200" y1="100" x2="90" y2="55" stroke="#E2E2E2" stroke-width="3"/>
-            <line x1="200" y1="100" x2="310" y2="55" stroke="#E2E2E2" stroke-width="3"/>
-            <line x1="200" y1="100" x2="90" y2="150" stroke="#E2E2E2" stroke-width="3"/>
-            <line x1="200" y1="100" x2="310" y2="150" stroke="#E2E2E2" stroke-width="3"/>
-            <line x1="200" y1="100" x2="200" y2="40" stroke="#E2E2E2" stroke-width="3"/>
-            <circle cx="200" cy="100" r="30" fill="#F46A2D"/>
-            <circle cx="200" cy="40" r="16" fill="#0D0D0D"/>
-            <circle cx="90" cy="55" r="16" fill="#0D0D0D"/>
-            <circle cx="310" cy="55" r="16" fill="#0D0D0D"/>
-            <circle cx="90" cy="150" r="16" fill="#0D0D0D"/>
-            <circle cx="310" cy="150" r="16" fill="#0D0D0D"/>
-          </svg>
+        <div class="a-card-top">
+          <div class="a-card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 14 L10 6 H38 L42 14 Z" fill="#F46A2D"/>
+              <path d="M6 14 L10 6 H24 V14 Z" fill="#0D0D0D"/>
+              <path d="M24 6 H38 L42 14 H24 Z" fill="#F46A2D"/>
+              <rect x="8" y="14" width="32" height="3" fill="#FFFFFF"/>
+              <rect x="9" y="17" width="30" height="21" rx="2" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1.5"/>
+              <rect x="20" y="26" width="8" height="12" fill="#0D0D0D"/>
+              <rect x="13" y="21" width="6" height="6" fill="#FDEDE1"/>
+              <rect x="29" y="21" width="6" height="6" fill="#FDEDE1"/>
+              <circle cx="38" cy="34" r="9" fill="#F46A2D"/>
+              <path d="M38 29 V39 M33 34 H43" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="tag">Agencias</span>
         </div>
-        <span class="tag">Agencias</span>
-        <h3>Sumate a la red y comercializá créditos</h3>
-        <p>Acceso a nuestra cartera de entidades financieras, calculadora de tasas para simular al instante y soporte operativo de punta a punta, dentro de una red con presencia en todo el país.</p>
-        <a class="btn btn-primary" id="cta-gestor" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumar%20mi%20agencia%20como%20gestor%20de%20Luka%20ya" target="_blank" rel="noopener">Quiero ser gestor</a>
+        <h3>Sumá tu agencia y accedé a más oportunidades de crédito</h3>
+        <ul class="check-list">
+          <li>Acceso a múltiples entidades financieras</li>
+          <li>Simulaciones ágiles y 100% online</li>
+          <li>Gestión integral: de la simulación a la liquidación</li>
+          <li>Acompañamiento y soporte en cada operación</li>
+          <li>Mejores herramientas para vender más y mejor</li>
+        </ul>
+        <a class="btn btn-primary" id="cta-gestor" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumar%20mi%20agencia%20a%20Luka%20ya" target="_blank" rel="noopener">Quiero sumar mi agencia</a>
+        <div class="a-card-note">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.3l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Proceso simple, rápido y sin costos iniciales</span>
+        </div>
       </div>
     </div>
   </div>
