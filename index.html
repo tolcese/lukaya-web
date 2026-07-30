@@ -99,7 +99,7 @@
 
   /* Audience cards */
   .audience{background:var(--gray-100);}
-  .audience-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:40px;max-width:480px;}
+  .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;}
   .a-card{
     background:var(--white);border:1px solid var(--gray-300);border-radius:var(--radius);
     padding:36px;display:flex;flex-direction:column;gap:16px;
@@ -263,11 +263,11 @@
 
 <section class="audience" id="creditos">
   <div class="container">
-    <span class="eyebrow">Para tu agencia</span>
+    <span class="eyebrow">Para tu negocio</span>
     <h2>Sumate a nuestra red y comercializá créditos</h2>
-    <p class="lead">Si tenés una agencia o concesionaria, tenemos un camino armado para que empieces a comercializar créditos prendarios hoy mismo.</p>
+    <p class="lead">Ya seas agencia, concesionaria o gestor, tenemos un camino armado para que empieces a comercializar créditos prendarios hoy mismo.</p>
     <div class="audience-grid">
-      <div class="a-card" id="gestores">
+      <div class="a-card" id="agencias">
         <span class="tag tag-center">Agencias</span>
         <div class="a-card-top">
           <div class="a-card-icon">
@@ -293,10 +293,38 @@
           <li>Acompañamiento y soporte en cada operación</li>
           <li>Mejores herramientas para vender más y mejor</li>
         </ul>
-        <a class="btn btn-primary" id="cta-gestor" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumar%20mi%20agencia%20a%20Luka%20ya" target="_blank" rel="noopener">Quiero sumar mi agencia</a>
+        <a class="btn btn-primary" id="cta-agencia" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumar%20mi%20agencia%20a%20Luka%20ya" target="_blank" rel="noopener">Quiero sumar mi agencia</a>
         <div class="a-card-note">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.3l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>Proceso simple, rápido y sin costos iniciales</span>
+        </div>
+      </div>
+      <div class="a-card" id="gestores">
+        <span class="tag tag-center">Gestores</span>
+        <div class="a-card-top">
+          <div class="a-card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="12" r="6" fill="none" stroke="#0D0D0D" stroke-width="2.4"/>
+              <circle cx="30" cy="12" r="6" fill="none" stroke="#0D0D0D" stroke-width="2.4"/>
+              <path d="M4 30c0-6 5-10 12-10s12 4 12 10" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M24 22c5-1.5 12 1.5 12 8" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="38" cy="34" r="9" fill="#F46A2D"/>
+              <path d="M38 29 V39 M33 34 H43" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Sumate como gestor y potenciá tus resultados</h3>
+        </div>
+        <ul class="check-list">
+          <li>Comisiones competitivas y claras</li>
+          <li>Herramientas y calculadoras para simular al instante</li>
+          <li>Soporte operativo de punta a punta</li>
+          <li>Red de agencias y entidades en todo el país</li>
+          <li>Capacitaciones y materiales para crecer</li>
+        </ul>
+        <a class="btn btn-primary" id="cta-gestor" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumarme%20como%20gestor%20de%20Luka%20ya" target="_blank" rel="noopener">Quiero ser gestor</a>
+        <div class="a-card-note">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.3l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Sumate hoy y empezá a generar más</span>
         </div>
       </div>
     </div>
