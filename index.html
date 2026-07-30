@@ -99,7 +99,7 @@
 
   /* Audience cards */
   .audience{background:var(--gray-100);}
-  .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;}
+  .audience-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:40px;max-width:480px;}
   .a-card{
     background:var(--white);border:1px solid var(--gray-300);border-radius:var(--radius);
     padding:36px;display:flex;flex-direction:column;gap:16px;
@@ -253,16 +253,10 @@
 
 <section class="audience" id="creditos">
   <div class="container">
-    <span class="eyebrow">Para cada necesidad</span>
-    <h2>Una misma red, dos formas de aprovecharla</h2>
-    <p class="lead">Ya sea que necesites financiar tu próximo vehículo o quieras comercializar créditos desde tu agencia, tenemos un camino armado para vos.</p>
+    <span class="eyebrow">Para tu agencia</span>
+    <h2>Sumate a nuestra red y comercializá créditos</h2>
+    <p class="lead">Si tenés una agencia o concesionaria, tenemos un camino armado para que empieces a comercializar créditos prendarios hoy mismo.</p>
     <div class="audience-grid">
-      <div class="a-card">
-        <span class="tag">Clientes</span>
-        <h3>Financiá tu vehículo sin vueltas</h3>
-        <p>Simulación rápida de tu crédito prendario, gestión centralizada de principio a fin y atención personalizada por WhatsApp. Trabajamos con entidades como Banco Santander, Galicia e ICBC.</p>
-        <a class="btn btn-primary" id="cta-cliente" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20simular%20un%20cr%C3%A9dito%20prendario" target="_blank" rel="noopener">Simular mi crédito</a>
-      </div>
       <div class="a-card" id="gestores">
         <div class="a-card-media">
           <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -280,7 +274,7 @@
             <circle cx="310" cy="150" r="16" fill="#0D0D0D"/>
           </svg>
         </div>
-        <span class="tag">Gestores y agencias</span>
+        <span class="tag">Agencias</span>
         <h3>Sumate a la red y comercializá créditos</h3>
         <p>Acceso a nuestra cartera de entidades financieras, calculadora de tasas para simular al instante y soporte operativo de punta a punta, dentro de una red con presencia en todo el país.</p>
         <a class="btn btn-primary" id="cta-gestor" href="https://wa.me/5493516659121?text=Hola%2C%20quiero%20sumar%20mi%20agencia%20como%20gestor%20de%20Luka%20ya" target="_blank" rel="noopener">Quiero ser gestor</a>
