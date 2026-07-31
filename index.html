@@ -172,7 +172,7 @@
 
   /* Contact */
   .contact{background:var(--gray-100);}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:10px;align-items:start;}
   .contact-info .btn{margin-top:10px;}
   .contact-info h3{font-size:1.2rem;margin:26px 0 8px;}
   .contact-info p{color:var(--gray-600);}
@@ -222,6 +222,7 @@
     .band-grid{grid-template-columns:1fr 1fr;row-gap:28px;}
     .contact-grid{grid-template-columns:1fr;}
     .field-row{grid-template-columns:1fr;}
+    .field-row-3{grid-template-columns:1fr;}
     .needs-list{grid-template-columns:1fr;}
     .needs-card{margin-left:0;}
     .contact-extra{flex-direction:column;align-items:flex-start;}
@@ -260,6 +261,7 @@
   .sim-form-head h3{color:var(--orange);font-size:1.15rem;margin:0 0 4px;}
   .sim-form-head p{color:var(--gray-600);font-size:.9rem;margin:0;line-height:1.45;}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field-row-3{display:grid;grid-template-columns:1fr 1fr 0.7fr;gap:16px;}
   .sim-submit{width:100%;margin-top:4px;}
   .sim-submit svg{width:18px;height:18px;}
   .form-note{display:flex;gap:8px;align-items:flex-start;}
@@ -487,9 +489,19 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="vehiculo">Vehículo / modelo / año</label>
-          <input type="text" id="vehiculo" name="vehiculo" placeholder="Ej.: Volkswagen Amarok 2021">
+        <div class="field-row-3">
+          <div class="field">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" name="marca" placeholder="Ej.: Volkswagen">
+          </div>
+          <div class="field">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" name="modelo" placeholder="Ej.: Amarok">
+          </div>
+          <div class="field">
+            <label for="anio">Año</label>
+            <input type="text" id="anio" name="anio" inputmode="numeric" placeholder="Ej.: 2021">
+          </div>
         </div>
 
         <div class="field">
@@ -553,7 +565,10 @@
     const dni      = document.getElementById('dni').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
     const email    = document.getElementById('email').value.trim();
-    const vehiculo = document.getElementById('vehiculo').value.trim();
+    const marca    = document.getElementById('marca').value.trim();
+    const modelo   = document.getElementById('modelo').value.trim();
+    const anio     = document.getElementById('anio').value.trim();
+    const vehiculo = [marca, modelo, anio].filter(Boolean).join(' ');
     const monto    = document.getElementById('monto').value.trim();
     const detalles = document.getElementById('detalles').value.trim();
 
