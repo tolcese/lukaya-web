@@ -492,15 +492,21 @@
         <div class="field-row-3">
           <div class="field">
             <label for="marca">Marca</label>
-            <input type="text" id="marca" name="marca" placeholder="Ej.: Volkswagen">
+            <select id="marca" name="marca" required>
+              <option value="">Cargando…</option>
+            </select>
           </div>
           <div class="field">
             <label for="modelo">Modelo</label>
-            <input type="text" id="modelo" name="modelo" placeholder="Ej.: Amarok">
+            <select id="modelo" name="modelo" required disabled>
+              <option value="">Elegí una marca</option>
+            </select>
           </div>
           <div class="field">
             <label for="anio">Año</label>
-            <input type="text" id="anio" name="anio" inputmode="numeric" placeholder="Ej.: 2021">
+            <select id="anio" name="anio" required disabled>
+              <option value="">—</option>
+            </select>
           </div>
         </div>
 
@@ -583,6 +589,85 @@
 
     window.open(`https://wa.me/5493512004953?text=${encodeURIComponent(t)}`, '_blank');
   });
+
+  /* ---- Vehículo: Marca -> Modelo -> Año desde Supabase (valuaciones_dnrpa) ---- */
+  (function(){
+    const SB_URL = 'https://zohniclbfhvqmurtrhka.supabase.co';
+    const SB_KEY = 'sb_publishable_wLoQBCmp1MM6f77rFJCbww_H_eJVEUZ';
+    const selMarca  = document.getElementById('marca');
+    const selModelo = document.getElementById('modelo');
+    const selAnio   = document.getElementById('anio');
+    if(!selMarca || selMarca.tagName !== 'SELECT') return;
+
+    async function rpc(fn, params){
+      const res = await fetch(SB_URL + '/rest/v1/rpc/' + fn, {
+        method: 'POST',
+        headers: {
+          'apikey': SB_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params || {})
+      });
+      if(!res.ok) throw new Error('RPC ' + fn + ' ' + res.status);
+      return res.json();
+    }
+
+    function fill(sel, items, key, placeholder){
+      sel.innerHTML = '';
+      const o0 = document.createElement('option');
+      o0.value = ''; o0.textContent = placeholder;
+      sel.appendChild(o0);
+      items.forEach(function(it){
+        const o = document.createElement('option');
+        o.value = it[key]; o.textContent = it[key];
+        sel.appendChild(o);
+      });
+      sel.disabled = false;
+    }
+    function ph(sel, text, disabled){
+      sel.innerHTML = '<option value="">' + text + '</option>';
+      sel.disabled = !!disabled;
+    }
+
+    // Fallback: si Supabase no responde, volver a inputs de texto
+    function fallbackToText(){
+      [['marca','Ej.: Volkswagen'],['modelo','Ej.: Amarok'],['anio','Ej.: 2021']].forEach(function(p){
+        const old = document.getElementById(p[0]);
+        if(!old || old.tagName === 'INPUT') return;
+        const inp = document.createElement('input');
+        inp.type = 'text'; inp.id = p[0]; inp.name = p[0]; inp.placeholder = p[1];
+        if(p[0] === 'anio') inp.inputMode = 'numeric';
+        old.replaceWith(inp);
+      });
+    }
+
+    // Cargar marcas al inicio
+    (async function(){
+      try {
+        const marcas = await rpc('lukaya_marcas', {});
+        fill(selMarca, marcas, 'marca', 'Elegí una marca');
+      } catch(e){ console.error(e); fallbackToText(); }
+    })();
+
+    selMarca.addEventListener('change', async function(){
+      ph(selAnio, '—', true);
+      if(!selMarca.value){ ph(selModelo, 'Elegí una marca', true); return; }
+      ph(selModelo, 'Cargando…', true);
+      try {
+        const modelos = await rpc('lukaya_modelos', { p_marca: selMarca.value });
+        fill(selModelo, modelos, 'modelo', 'Elegí un modelo');
+      } catch(e){ console.error(e); ph(selModelo, 'Error al cargar', true); }
+    });
+
+    selModelo.addEventListener('change', async function(){
+      if(!selModelo.value){ ph(selAnio, '—', true); return; }
+      ph(selAnio, 'Cargando…', true);
+      try {
+        const anios = await rpc('lukaya_anios', { p_marca: selMarca.value, p_modelo: selModelo.value });
+        fill(selAnio, anios, 'anio', 'Elegí un año');
+      } catch(e){ console.error(e); ph(selAnio, 'Error al cargar', true); }
+    });
+  })();
 
   // Contador animado (0 -> número) al aparecer en pantalla
   (function(){
