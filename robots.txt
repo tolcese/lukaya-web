@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tolcese.github.io/lukaya-web/sitemap.xml
