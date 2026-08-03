@@ -785,7 +785,7 @@
   })();
 
   // Controles de la pantalla de confirmación
-  (function(){
+  document.addEventListener('DOMContentLoaded', function(){
     var ov = document.getElementById('confirm-overlay');
     if(!ov) return;
     function closeOv(){ ov.classList.remove('open'); document.body.style.overflow=''; }
@@ -795,7 +795,7 @@
     var send = document.getElementById('confirm-send');
     if(send) send.addEventListener('click', function(){ setTimeout(closeOv, 300); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeOv(); });
-  })();
+  });
 </script>
 
 <div class="confirm-overlay" id="confirm-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
